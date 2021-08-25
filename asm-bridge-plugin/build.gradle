@@ -43,12 +43,9 @@ gradlePlugin {
 publishing {
     publications {
         asmBridge(MavenPublication) {
-            // 插件的组ID，建议设置为插件的包名
-            groupId = 'me.codethink.plugin'
-            // 翻译过来是 工件ID，我的理解是插件的名字
-            artifactId = 'asmbridge'
+            groupId = 'com.github.archieyang'
+            artifactId = 'asm-bridge'
             version = '0.0.1'
-            // 组件类型，我们的插件其实就是Java组件
             from components.java
         }
     }
