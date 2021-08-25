@@ -47,7 +47,7 @@ gradlePlugin {
     // Define the plugin
     plugins {
         asmBridge {
-            id = "me.codethink.plugin.asmbridge"
+            id = "com.github.archieyang.asmbridge"
             implementationClass = "me.codethink.asmbridge.AsmBridgePlugin"
         }
     }
