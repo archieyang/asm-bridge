@@ -1,0 +1,63 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'java'
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+repositories {
+    // The org.jetbrains.kotlin.jvm plugin requires a repository
+    // where to download the Kotlin compiler dependencies from.
+    jcenter()
+    google()
+}
+
+
+dependencies {
+
+    implementation "org.ow2.asm:asm:7.2"
+    implementation "org.ow2.asm:asm-commons:7.2"
+    implementation "org.ow2.asm:asm-analysis:7.2"
+    implementation "org.ow2.asm:asm-util:7.1"
+    implementation "org.ow2.asm:asm-tree:7.2"
+    implementation "com.android.tools.build:gradle:3.4.1"
+
+}
+
+gradlePlugin {
+    // Define the plugin
+    plugins {
+        asmBridge {
+            id = "me.codethink.plugin.asmbridge"
+            implementationClass = "me.codethink.asmbridge.AsmBridgePlugin"
+        }
+    }
+}
+
+
+publishing {
+    publications {
+        asmBridge(MavenPublication) {
+            // 插件的组ID，建议设置为插件的包名
+            groupId = 'me.codethink.plugin'
+            // 翻译过来是 工件ID，我的理解是插件的名字
+            artifactId = 'asmbridge'
+            version = '0.0.1'
+            // 组件类型，我们的插件其实就是Java组件
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            // $rootProject 表示你项目的根目录
+            url = "../../repo"
+        }
+    }
+
+}

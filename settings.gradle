@@ -1,0 +1,3 @@
+//include ':app'
+include ':asm-bridge-plugin'
+rootProject.name = "asm-bridge-plugin"
