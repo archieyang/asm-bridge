@@ -1,6 +1,0 @@
-me/codethink/asmbridge/AsmBridgeExtension.java
- me.codethink.asmbridge.AsmBridgeExtension
-me/codethink/asmbridge/AsmBridgeTransform.java
- me.codethink.asmbridge.AsmBridgeTransform
-me/codethink/asmbridge/AsmBridgePlugin.java
- me.codethink.asmbridge.AsmBridgePlugin
