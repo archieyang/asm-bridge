@@ -6,7 +6,8 @@ ASM Bridge attempts to make it easier to do bytecode manipulation and analysis w
 ## Usage
 Add jitpack in your root build.gradle at the end of repositories:
 ``` groovy
-allprojects {
+buildscript {
+    ...
     repositories {
         ...
         maven { url 'https://jitpack.io' }
@@ -15,8 +16,11 @@ allprojects {
 ```
 Add the dependency of ASM Bridge: 
 ``` groovy
-dependencies {
-    classpath 'com.github.archieyang.asm-bridge:asm-bridge:0.0.6'
+buildscript {
+    ...
+    dependencies {
+        classpath 'com.github.archieyang.asm-bridge:asm-bridge:0.0.6'
+    }
 }
 ```
 Create buildSrc directory in your root directory and add ASM library dependencies in buildSrc/build.gradle
@@ -48,13 +52,15 @@ public class CustomAdapter extends ClassVisitor {
     }
 }
 ```
-Configure your custom ClassVisitor in build.gradle
+Configure your custom ClassVisitor in your module's build.gradle
 ``` groovy
+apply plugin: 'com.github.archieyang.asm-bridge'
 asmBridge {
     implementation = "${your adapter package name}.CustomAdapter"
 }
 ```
 
+You can find the sample project [here](https://github.com/archieyang/asm-bridge-sample).
 ## Acknowledgments
 The world famous Java bytecode manipulation and analysis framework: [ASM](https://asm.ow2.io/)
 
