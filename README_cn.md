@@ -1,12 +1,10 @@
 # ASM Bridge
 [![](https://jitpack.io/v/archieyang/asm-bridge.svg)](https://jitpack.io/#archieyang/asm-bridge)
 
-[中文](https://github.com/archieyang/asm-bridge/blob/master/README_cn.md)
+ASM Bridge通过gradle插件的方式简化了使用 [ASM](https://asm.ow2.io/) 和[Android transform API](https://developer.android.com/reference/tools/gradle-api/7.0/com/android/build/api/transform/Transform) 进行字节码修改和分析的开发过程。
 
-ASM Bridge attempts to make it easier to do bytecode manipulation and analysis with [ASM](https://asm.ow2.io/) and [Android transform API](https://developer.android.com/reference/tools/gradle-api/7.0/com/android/build/api/transform/Transform) .
-
-## Usage
-Add jitpack in your root build.gradle at the end of repositories:
+## 使用方式
+在根目录下的build.gradle添加jitpack：
 ``` groovy
 buildscript {
     ...
@@ -16,7 +14,7 @@ buildscript {
     }
 }
 ```
-Add the dependency of ASM Bridge: 
+在根目录下的build.gradle添加ASM Bridge依赖
 ``` groovy
 buildscript {
     ...
@@ -25,7 +23,7 @@ buildscript {
     }
 }
 ```
-Create buildSrc directory in your root directory and add ASM library dependencies in buildSrc/build.gradle
+在根目录下创建buildSrc并在buildSrc/build.gradle中添加ASM依赖：
 ``` groovy
 dependencies {
     implementation "org.ow2.asm:asm:7.2"
@@ -36,7 +34,7 @@ dependencies {
     implementation "com.android.tools.build:gradle:3.4.1"
 }
 ```
-Create your own ClassVisitor(with some magic) in buildSrc: 
+在buildSrc创建你自己的ClassVisitor： 
 
 ```java
 public class CustomAdapter extends ClassVisitor {
@@ -54,7 +52,7 @@ public class CustomAdapter extends ClassVisitor {
     }
 }
 ```
-Configure your custom ClassVisitor in your module's build.gradle
+在你应用的App模块下的build.gradle中配置ClassVisitor的实现：
 ``` groovy
 apply plugin: 'com.github.archieyang.asm-bridge'
 asmBridge {
@@ -62,9 +60,9 @@ asmBridge {
 }
 ```
 
-You can find the sample project [here](https://github.com/archieyang/asm-bridge-sample).
-## Acknowledgments
-The world famous Java bytecode manipulation and analysis framework: [ASM](https://asm.ow2.io/)
+完整的示例在 [这里](https://github.com/archieyang/asm-bridge-sample).
+## 致谢
+[ASM](https://asm.ow2.io/)
 
 ## License
     Copyright 2021 Archie Yang
